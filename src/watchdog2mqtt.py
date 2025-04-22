@@ -26,6 +26,19 @@ Environment Variables:
     LOG_LEVEL, LOG_FILE
 """
 
+# "Watchdog2MQTT" in font "Standard",
+# created with Text to ASCII Art Generator (https://patorjk.com/software/taag/)
+WATCHDOG2MQTT_LOGO = r"""
+ __        __    _       _         _             ____  __  __  ___ _____ _____ 
+ \ \      / /_ _| |_ ___| |__   __| | ___   __ _|___ \|  \/  |/ _ \_   _|_   _|
+  \ \ /\ / / _` | __/ __| '_ \ / _` |/ _ \ / _` | __) | |\/| | | | || |   | |  
+   \ V  V / (_| | || (__| | | | (_| | (_) | (_| |/ __/| |  | | |_| || |   | |  
+    \_/\_/ \__,_|\__\___|_| |_|\__,_|\___/ \__, |_____|_|  |_|\__\_\|_|   |_|  
+                                           |___/                               
+      Watchdog2MQTT
+"""
+print(WATCHDOG2MQTT_LOGO)
+
 import os
 import time
 import json
@@ -36,19 +49,6 @@ from typing import Optional, Dict, Any, Union
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import paho.mqtt.client as mqtt
-
-
-# "Watchdog2MQTT" in font "Standard",
-# created with Text to ASCII Art Generator (https://patorjk.com/software/taag/)
-ASCII_LOGO = r"""
- __        __    _       _         _             ____  __  __  ___ _____ _____ 
- \ \      / /_ _| |_ ___| |__   __| | ___   __ _|___ \|  \/  |/ _ \_   _|_   _|
-  \ \ /\ / / _` | __/ __| '_ \ / _` |/ _ \ / _` | __) | |\/| | | | || |   | |  
-   \ V  V / (_| | || (__| | | | (_| | (_) | (_| |/ __/| |  | | |_| || |   | |  
-    \_/\_/ \__,_|\__\___|_| |_|\__,_|\___/ \__, |_____|_|  |_|\__\_\|_|   |_|  
-                                           |___/                               
-      Watchdog2MQTT
-"""
 
 
 class MQTTPublishHandler(FileSystemEventHandler):
