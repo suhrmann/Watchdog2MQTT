@@ -60,9 +60,19 @@ class MqttFileTransfer:
         file_type = file_name.split('.')[-1] if file_name.count('.') > 0 else None  # get type of file - e.g. ".pdf", ".jpg", or ".docx"
 
         # read file
-        f = open(filepath, 'rb')
-        file_data: bytes = f.read()
-        logger.debug(f'Read file {file_name}')
+        try:
+            with open(filepath, 'rb') as f:
+                file_data: bytes = f.read()
+                logger.debug(f"Read file {file_name}")
+        except FileNotFoundError as e:
+            logger.error(f"File not found: {file_name} - {e}")
+            return
+        except PermissionError as e:
+            logger.error(f"Permission denied when reading file {file_name} - {e}")
+            return
+        except Exception as e:
+            logger.error(f"Unexpected error reading file {file_name} - {e}")
+            return
 
         # create message payload
         msg = MqttFileTransfer._create_mqtt_message(file_name, file_type, file_data, self.sensor_id)
