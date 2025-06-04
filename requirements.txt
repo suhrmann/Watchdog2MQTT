@@ -1,2 +1,4 @@
+# tested with Python 3.12
 paho-mqtt ~= 2.1.0
 watchdog ~= 6.0.0
+pyyaml ~= 6.0.0
