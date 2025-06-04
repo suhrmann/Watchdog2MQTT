@@ -98,11 +98,11 @@ class MqttFileTransfer:
 
         return json.dumps({
             'timestamp': MqttFileTransfer._time_iso_str(),
-            'file_data': file_base64,
             'sensor_id': sensor_id,
             'file_name': file_name,
             'file_type': file_type,
-            'encoding': 'base64'
+            'encoding': 'base64',
+            'file_data': file_base64,
         })
 
     @staticmethod
