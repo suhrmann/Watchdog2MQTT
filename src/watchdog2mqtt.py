@@ -179,13 +179,6 @@ def parse_arguments() -> argparse.Namespace:
     mqtt_tls_group.add_argument("--ciphers", help="")  # : None,  # NotRequired[str]
     mqtt_tls_group.add_argument("--insecure", help="")  # : None,  # NotRequired[bool]
 
-    # Error handling arguments
-    # TODO implement Error handling
-    error_group = parser.add_argument_group("Error Handling")
-    error_group.add_argument("--retry-attempts", type=int, default=5, help="Number of retry attempts for operations")
-    error_group.add_argument("--retry-backoff", type=float, default=2.0, help="Exponential backoff factor for retries (seconds)")
-    error_group.add_argument("--quarantine-dir", default="./quarantine", help="Directory for files that fail to transmit")
-
     # Logging arguments
     log_group = parser.add_argument_group("Logging")
     log_group.add_argument("--log-level", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], default="INFO", help="Logging level")
@@ -211,10 +204,6 @@ def parse_arguments() -> argparse.Namespace:
         "tls_version": os.environ.get("MQTT_TLS_TLS_VERSION"),
         "ciphers": os.environ.get("MQTT_TLS_ciphers"),
         "insecure": os.environ.get("MQTT_TLS_insecure"),
-        # retry -> # todo implement retry & error handling
-        "retry_attempts": os.environ.get("RETRY_ATTEMPTS"),
-        "retry_backoff": os.environ.get("RETRY_BACKOFF"),
-        "quarantine_dir": os.environ.get("QUARANTINE_DIR"),
         # logging
         "log_level": os.environ.get("LOG_LEVEL"),
         "log_file": os.environ.get("LOG_FILE"),
