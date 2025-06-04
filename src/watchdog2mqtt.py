@@ -242,19 +242,19 @@ def main() -> None:
     setup_logging(args)
 
     # Create directories if they don't exist
-    watch_dir = args.watch_dir
-    if not os.path.exists(watch_dir):
-        logging.warning(f"The watch directory '{watch_dir}' does not exist! Creating it...")
-    os.makedirs(watch_dir, exist_ok=True)
+    watch_dir_abspath = os.path.abspath(args.watch_dir)
+    if not os.path.exists(watch_dir_abspath):
+        logging.warning(f"The watch directory '{watch_dir_abspath}' does not exist! Creating it...")
+    os.makedirs(watch_dir_abspath, exist_ok=True)
 
     # Set up Watchdog: observer (Watchdog watch dir) and event handler (mqtt file transmission)
     event_handler = Watchdog2MqttHandler(args)
     observer = Observer()
-    observer.schedule(event_handler, args.watch_dir, recursive=False)
+    observer.schedule(event_handler, watch_dir_abspath, recursive=False)
     observer.start()
 
     logging.info("🚀 Watchdog2MQTT is running:")
-    logging.info(f"├─ Watching {args.watch_dir} for new files...")
+    logging.info(f"├─ Watching {watch_dir_abspath} for new files...")
     logging.info(f"├─ MQTT broker: {args.broker_host}:{args.broker_port}")
     logging.info(f"└─ MQTT topic: {args.topic}")
 
