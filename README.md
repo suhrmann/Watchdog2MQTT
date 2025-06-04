@@ -20,7 +20,7 @@ Watchdog2MQTT is built using [Watchdog](https://pythonhosted.org/watchdog/) to m
 The file transfer is based on [EMQX File Transfer over MQTT](https://docs.emqx.com/en/emqx/latest/file-transfer/introduction.html).
 In particular based on [EMQX File Transfer Clients Development](https://docs.emqx.com/en/emqx/latest/file-transfer/client.html) and
 [EMQX Client Code Example ``Python3 - Paho``](https://github.com/emqx/MQTT-Client-Examples/blob/master/mqtt-client-Python3/file_transfer.py).
-![EMQX File Transfer Process](./docs/)
+![EMQX File Transfer Flow](docs/emqx-ft-flow.EZCcXoBD.png)
 
 Though full implementation of File Transfer over MQTT is an EMQX Enterprise edition feature (including the missing parts mentioned above).
 
