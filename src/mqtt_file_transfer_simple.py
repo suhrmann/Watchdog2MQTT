@@ -63,7 +63,8 @@ class MqttFileTransfer:
         try:
             with open(filepath, 'rb') as f:
                 file_data: bytes = f.read()
-                logger.debug(f"Read file {file_name}")
+                file_size = len(file_data)
+                logger.debug(f"Read {file_size} bytes of file {file_name}")
         except FileNotFoundError as e:
             logger.error(f"File not found: {file_name} - {e}")
             return
@@ -95,12 +96,14 @@ class MqttFileTransfer:
         """Create a message containing image data and metadata."""
         # encode file data as bas64
         file_base64 = base64.b64encode(file_data).decode('utf-8')  # todo decode necessary?
+        file_size = len(file_data)
 
         return json.dumps({
             'timestamp': MqttFileTransfer._time_iso_str(),
             'sensor_id': sensor_id,
             'file_name': file_name,
             'file_type': file_type,
+            'file_size': file_size,  # bytes
             'encoding': 'base64',
             'file_data': file_base64,
         })
