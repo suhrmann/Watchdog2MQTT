@@ -62,17 +62,23 @@ class MqttFileTransfer:
         # read file
         f = open(filepath, 'rb')
         file_data: bytes = f.read()
+        logger.debug(f'Read file {file_name}')
 
         # create message payload
         msg = MqttFileTransfer._create_mqtt_message(file_name, file_type, file_data, self.sensor_id)
+        logger.debug(f'Created mqtt message')
 
         # publish message with mqtt / Paho
-        publish.single(topic=self.topic, payload=msg, qos=self.qos,
-                       hostname=self.host, port=self.port,
-                       client_id=self.client_id,
-                       protocol=self.protocol,
-                       auth=self.auth,
-                       tls=self.tls)
+        try:
+            publish.single(topic=self.topic, payload=msg, qos=self.qos,
+                           hostname=self.host, port=self.port,
+                           client_id=self.client_id,
+                           protocol=self.protocol,
+                           auth=self.auth,
+                           tls=self.tls)
+            logger.info(f"Published file successfully: {file_name}")
+        except Exception as e:
+            logger.error(f"Failed publish of file {file_name} - Exception: {e}")
 
     @staticmethod
     def _create_mqtt_message(file_name: str, file_type: str | None, file_data: bytes, sensor_id: str) -> str:
