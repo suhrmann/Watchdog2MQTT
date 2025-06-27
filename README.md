@@ -12,17 +12,19 @@ the EMQX file transfer protocol (incomplete).
   - Logging for debugging and monitoring
   - 🚧 TODO: Robust error handling with retries and quarantine
 
-## Requirements
- - Python v3.9 or higher
 
-## Usage
-**tl;dr:** Download the project, install Python requirements and run ``src/watchdog2mqtt.py``
+## Requirements
+The project requires installed Python v3.9 or higher.
 
 1. Download or clone the Watchdog2MQTT: ``git clone https://github.com/suhrmann/Watchdog2MQTT``
 2. [recommended] Create a virtual environment for the Python requirements: ``cd Watchdog2MQTT && python3 -m venv venv``
   2.1 Activate the virtual environment: ``source venv/bin/activate`` for MacOS and Linux  or ``venv\Scripts\activate`` on Windows
-5. Install Python requirements: ``pip install -r requirements.txt``
-6. Start the application: ``python src/watchdog2mqtt.py``
+3. Install Python requirements: ``pip install -r requirements.txt``
+
+## Usage
+Download the project, install Python requirements and use start scripts:
+ - ``start.sh`` for MacOS / Linux
+ - ``start.bat`` for Windows
 
 
 ## Implementation Details
