@@ -12,8 +12,21 @@ the EMQX file transfer protocol (incomplete).
   - Logging for debugging and monitoring
   - 🚧 TODO: Robust error handling with retries and quarantine
 
+## Message format
+The file is transmitted with meta data in JSON and the file encoded in Base64.
+```js
+{
+  timestamp: 'YYYY-MM-DD HH:MM:SS.mmmmmm',  // Python: datetime.now().isoformat()
+  sensor_id: sensor_id,
+  file_name: file_name,
+  file_type: file_type,
+  file_size: file_size,  // in bytes
+  encoding: 'base64',
+  file_data: file_base64
+}
+```
 
-## Requirements
+## Installation
 The project requires installed Python v3.9 or higher.
 
 1. Download or clone the Watchdog2MQTT: ``git clone https://github.com/suhrmann/Watchdog2MQTT``
